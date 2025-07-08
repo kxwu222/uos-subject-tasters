@@ -64,6 +64,13 @@ function injectStyles(cssStyles) {
     }
 }
 
+function getStartTime(timeString) {
+    if (!timeString) return '';
+    // Split on 'to' or '-'
+    let parts = timeString.split(/\s+to\s+|\s*-\s*/i);
+    return parts[0].trim();
+}
+
 // ... existing code ...
 // CSS_STYLES (now with the full CSS from styles.js)
 const CSS_STYLES = `
@@ -90,7 +97,7 @@ const CSS_STYLES = `
     }
 
     .event-widget-title {
-        font-family: 'Source Serif 4', serif;
+        font-family: 'Source Serif 4',serif;
         font-weight: 700;
         font-size: 2.5rem;
         color: #131E29;
@@ -791,7 +798,8 @@ class EventFilter {
     filterExpiredEvents(events, showPastEvents = false) {
         const now = new Date();
         return events.filter(event => {
-            const eventDate = new Date(`${event.date} ${event.time}`);
+            const startTime = getStartTime(event.time);
+            const eventDate = new Date(`${event.date} ${startTime}`);
             return showPastEvents || eventDate > now;
         });
     }
