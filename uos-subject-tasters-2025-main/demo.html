@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventWidget Standalone Demo</title>
+</head>
+<body style="background: #f8fafc; min-height: 100vh;">
+  <h1 style="text-align:center; font-family:sans-serif; margin-top:2rem;">EventWidget Standalone Demo</h1>
+  <div id="event-widget-container" style="max-width:900px; margin:2rem auto;"></div>
+
+  <!-- Standalone widget script -->
+  <script src="./public/widget/EventWidget.standalone.js"></script>
+  <script>
+    new EventWidget(
+      '#event-widget-container',
+      './public/Sample - Subject Tasters (October 2025).csv',
+      {
+        showPastEvents: false,
+        autoRefresh: true
+      }
+    );
+  </script>
+</body>
+</html> 
